@@ -1,5 +1,6 @@
+import Inicio from "./pages/Inicio";
 const App = () => {
-  return <h1>Nombre Tienda</h1>;
+  return <Inicio />;
 };
 
 export default App;
