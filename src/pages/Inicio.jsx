@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 
 const Inicio = () => {
@@ -9,8 +8,8 @@ const Inicio = () => {
   useEffect(() => {
     const traer = async () => {
       try {
-        const x = await fetch("https://dummyjson.com/products");
-        const data = await x.json();
+        const respuesta = await fetch("https://dummyjson.com/products");
+        const data = await respuesta.json();
         setProductos(data.products);
       } catch (err) {
         console.error(err);
@@ -22,13 +21,13 @@ const Inicio = () => {
     traer();
   }, []);
 
-  console.log(productos);
   if (error) {
     return <p>{error}</p>;
   }
   if (cargando) {
-    return <h1>Cargando datos</h1>;
-  } else {
+    return <p>Cargando datos</p>;
+  }
+  {
     return productos.map((producto) => (
       <ProductCard
         key={producto.id}
@@ -36,8 +35,8 @@ const Inicio = () => {
         precio={producto.price}
         descripcion={producto.description}
         imagen={producto.thumbnail}
-        raiting={producto.rating}
-      ></ProductCard>
+        rating={producto.rating}
+      />
     ));
   }
 };
